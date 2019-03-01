@@ -17,11 +17,29 @@ app.use(cookieParser());
 const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
 const { Type } = require('./models/type');
+const { Model } = require('./models/model');
 
 // Middlewares
 
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
+
+//===================
+// Model
+//===================
+
+app.post('/api/product/model', auth, admin, (req,res)=>{
+  const model = new Model(req.body);
+
+  model.save((err,doc)=>{
+    if(err) return res.json({success: false, err});
+    res.status(200).json({
+      success: true,
+      article: doc
+    })
+  })
+})
+
 
 //===================
 // TYPE
