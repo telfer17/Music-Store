@@ -28,6 +28,27 @@ const { admin } = require('./middleware/admin');
 // Model
 //===================
 
+app.get('/api/product/models_by_id', (req,res)=>{
+  let type = req.query.type;
+  let items = req.query.id;
+
+  if(type === "array"){
+    let ids = req.query.id.split(',');
+    items = [];
+    items = ids.map(item => {
+      return mongoose.Types.ObjectId(item)
+    })
+  }
+
+  Model.
+  find({ '_id':{$in: items}}).
+  populate('brand').
+  populate('type').
+  exec((err,docs)=>{
+    return res.status(200).send(docs)
+  })
+});
+
 app.post('/api/product/model', auth, admin, (req,res)=>{
   const model = new Model(req.body);
 
@@ -71,13 +92,13 @@ app.get('/api/product/types', (req,res)=>{
 app.post('/api/product/brand', auth, admin, (req, res)=>{
   const brand = new Brand(req.body);
 
-    brand.save((err,doc)=>{
-      if(err) return res.json({success: false, err})
-      res.status(200).json({
-        success: true,
-        brand: doc
-      })
+  brand.save((err,doc)=>{
+    if(err) return res.json({success: false, err})
+    res.status(200).json({
+      success: true,
+      brand: doc
     })
+  })
 })
 
 app.get('/api/product/brands', (req,res)=>{
