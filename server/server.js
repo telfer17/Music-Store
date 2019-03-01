@@ -28,6 +28,25 @@ const { admin } = require('./middleware/admin');
 // Model
 //===================
 
+
+app.get('/api/product/models', (req,res)=>{
+  let order = req.query.order ? req.query.order : 'asc';
+  let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+  let limit = req.query.limit ? parseInt(req.query.limit) : 100;
+
+  Model.
+  find().
+  populate('brand').
+  populate('type').
+  sort([[sortBy, order]]).
+  limit(limit).
+  exec((err, models)=>{
+    if(err) return res.status(400).send(err);
+    res.send(models);
+  })
+})
+
+
 app.get('/api/product/models_by_id', (req,res)=>{
   let type = req.query.type;
   let items = req.query.id;
@@ -56,7 +75,7 @@ app.post('/api/product/model', auth, admin, (req,res)=>{
     if(err) return res.json({success: false, err});
     res.status(200).json({
       success: true,
-      article: doc
+      model: doc
     })
   })
 })
