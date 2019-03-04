@@ -28,6 +28,13 @@ const { admin } = require('./middleware/admin');
 // Model
 //===================
 
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+    next();
+});
+
 
 app.get('/api/product/models', (req,res)=>{
   let order = req.query.order ? req.query.order : 'asc';
