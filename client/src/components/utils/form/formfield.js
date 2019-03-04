@@ -8,7 +8,7 @@ const Formfield = ({formData, change, id}) => {
     if(formData.validation && !formData.valid){
       errorMessage = (
         <div className="error_label">
-        {formData.validationMessage}
+          {formData.validationMessage}
         </div>
       )
     }
@@ -32,11 +32,9 @@ const Formfield = ({formData, change, id}) => {
           </div>
         )
       break;
-
       default:
         formTemplate = null;
     }
-
     return formTemplate;
   }
 
