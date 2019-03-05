@@ -75,7 +75,6 @@ class Login extends Component {
         formError: true
       })
     }
-
   }
 
   render(){
