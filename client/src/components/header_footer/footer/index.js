@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="bck_b_dark">
       <div className="container">
         <div className="logo">
-          The DJ Booth
+          Musica
         </div>
         <div className="wrapper">
           <div className="left">
@@ -33,7 +33,7 @@ const Footer = () => {
                 />
                 <div className="nfo">
                   <div>Phone</div>
-                    <div>07811117356</div>
+                    <div>0141 999 1111</div>
                 </div>
               </div>
               <div className="tag">
