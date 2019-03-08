@@ -70,6 +70,7 @@ class Login extends Component {
           })
         }
       });
+      
     } else {
       this.setState({
         formError: true

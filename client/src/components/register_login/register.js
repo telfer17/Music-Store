@@ -116,7 +116,7 @@ submitForm = (event) => {
           });
           setTimeout(()=>{
             this.props.history.push('/register_login');
-          }, 3000)
+          }, 5000)
         } else {
           this.setState({formError: true})
         }
@@ -189,7 +189,6 @@ submitForm = (event) => {
                     Register
                   </button>
                 </div>
-
               </form>
             </div>
           </div>

@@ -20,7 +20,6 @@ const { Type } = require('./models/type');
 const { Model } = require('./models/model');
 
 // Middlewares
-
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
 
