@@ -14,8 +14,8 @@ const HomeSlider = (props) => {
     },
     {
       img: '/images/featured/featured_home_2.jpg',
-      lineOne: 'Pioneer',
-      lineTwo: 'DJM 900 Nexus',
+      lineOne: 'Roland',
+      lineTwo: 'SE-02 Synth',
       linkTitle: 'Shop Now',
       linkTo: '/shop'
     },
