@@ -3,7 +3,7 @@ import {
   GET_PRODUCTS_BY_SALES,
   GET_PRODUCTS_BY_ARRIVAL,
   GET_BRANDS,
-  GET_MODELS
+  GET_TYPES
  } from './types';
 
  import { PRODUCT_SERVER } from '../components/utils/misc';
@@ -44,13 +44,13 @@ export function getBrands(){
 
 }
 
-export function getModels(){
+export function getTypes(){
 
-  const request = axios.get(`${PRODUCT_SERVER}/models`)
+  const request = axios.get(`${PRODUCT_SERVER}/types`)
         .then(response => response.data);
 
   return {
-    type: GET_MODELS,
+    type: GET_TYPES,
     payload: request
   }
 

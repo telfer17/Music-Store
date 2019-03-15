@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import PageTop from '../utils/page_top';
 
 import { connect } from 'react-redux';
-import { getBrands, getModels } from '../../actions/products_actions';
+import { getBrands, getTypes } from '../../actions/products_actions';
+
+import CollapseCheckbox from '../utils/collapseCheckbox';
 
 class Shop extends Component {
 
   componentDidMount(){
     this.props.dispatch(getBrands());
-    this.props.dispatch(getModels());
+    this.props.dispatch(getTypes());
+  }
+
+  handleFilters = (filters, category) => {
+
   }
 
   render(){
@@ -21,7 +27,18 @@ class Shop extends Component {
         <div className="container">
           <div className="shop_wrapper">
             <div className="left">
-              Left
+              <CollapseCheckbox
+                initState={true}
+                title="Brands"
+                list={products.brands}
+                handleFilters={(filters) => this.handleFilters(filters, 'brand')}
+              />
+              <CollapseCheckbox
+                initState={true}
+                title="Types"
+                list={products.types}
+                handleFilters={(filters) => this.handleFilters(filters, 'type')}
+              />
             </div>
             <div className="right">
               Right

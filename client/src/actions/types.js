@@ -6,4 +6,4 @@ export const LOGOUT_USER = 'logout_user';
 export const GET_PRODUCTS_BY_SALES = 'get_products_by_sales';
 export const GET_PRODUCTS_BY_ARRIVAL = 'get_products_by_arrival';
 export const GET_BRANDS = 'get_brands';
-export const GET_MODELS = 'get_models';
+export const GET_TYPES = 'get_types';
