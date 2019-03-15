@@ -8,13 +8,29 @@ import CollapseCheckbox from '../utils/collapseCheckbox';
 
 class Shop extends Component {
 
+  state = {
+    grid: '',
+    limit: 6,
+    skip: 0,
+    filters: {
+      brand: [],
+      types: [],
+      price: []
+    }
+  }
+
   componentDidMount(){
     this.props.dispatch(getBrands());
     this.props.dispatch(getTypes());
   }
 
   handleFilters = (filters, category) => {
+    const newFilters = {...this.state.filters}
+    newFilters[category] = filters;
 
+    this.setState({
+      filters: newFilters
+    })
   }
 
   render(){
@@ -29,15 +45,15 @@ class Shop extends Component {
             <div className="left">
               <CollapseCheckbox
                 initState={true}
-                title="Brands"
-                list={products.brands}
-                handleFilters={(filters) => this.handleFilters(filters, 'brand')}
-              />
-              <CollapseCheckbox
-                initState={true}
                 title="Types"
                 list={products.types}
                 handleFilters={(filters) => this.handleFilters(filters, 'type')}
+              />
+              <CollapseCheckbox
+                initState={true}
+                title="Brands"
+                list={products.brands}
+                handleFilters={(filters) => this.handleFilters(filters, 'brand')}
               />
             </div>
             <div className="right">
