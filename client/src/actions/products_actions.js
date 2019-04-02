@@ -39,9 +39,14 @@ import {
 
    const request = axios.post(`${PRODUCT_SERVER}/shop`, data)
           .then(response => {
+            let newState = [
+              ...previousState,
+              ...response.data.articles
+            ];
+
             return {
               size: response.data.size,
-              models: response.data.models
+              articles: newState
             }
           });
 
