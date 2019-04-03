@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const formidable = require('express-formidable');
+const cloudinary = require('cloudinary');
 
 const app = express();
 const mongoose = require('mongoose');
@@ -13,6 +15,12 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET
+})
+
 // Models
 const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
@@ -24,13 +32,14 @@ const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
 
 //===================
-// Model
+// Products
 //===================
 
 app.post('/api/product/shop', (req, res) => {
-  let order = req.body.order ? req.body.orde: 'desc';
-  let sortBy = req.body.sortBy ? req.body.sortBy: '_id';
-  let limit = req.body.limit ? parseInt(req.body.limit): 100;
+
+  let order = req.body.order ? req.body.order : 'desc';
+  let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
+  let limit = req.body.limit ? parseInt(req.body.limit) : 100;
   let skip = parseInt(req.body.skip);
   let findArgs = {};
 
@@ -47,7 +56,9 @@ app.post('/api/product/shop', (req, res) => {
     }
   }
 
-  Product.
+  findArgs['publish'] = true;
+
+  Model.
   find(findArgs).
   populate('brand').
   populate('type').

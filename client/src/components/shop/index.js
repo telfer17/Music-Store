@@ -131,26 +131,26 @@ class Shop extends Component {
               <div className="shop_options">
                 <div className="shop_grids clear">
                   <div
-                    className={`grid_btn ${this.state.grid?'':'active'}`}
+                    className={`grid_btn ${this.state.grid ? '' : 'active'}`}
                     onClick={() => this.handleGrid()}
                   >
                     <FontAwesomeIcon icon={faTh}/>
                   </div>
                   <div
-                    className={`grid_btn ${this.state.grid?'':'active'}`}
+                    className={`grid_btn ${!this.state.grid ? '' : 'active'}`}
                     onClick={() => this.handleGrid()}
                   >
                     <FontAwesomeIcon icon={faBars}/>
                   </div>
                 </div>
               </div>
-              <div>
+              <div style={{clear: 'both'}}>
                 <LoadMoreCards
                   grid={this.state.grid}
                   limit={this.state.limit}
                   size={products.toShopSize}
                   products={products.toShop}
-                  loadMore={() => console.log('load more')}
+                  loadMore={() => this.loadMoreCards()}
                 />
               </div>
             </div>

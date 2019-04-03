@@ -22,27 +22,75 @@ const Formfield = ({formData, change, id}) => {
       case('input'):
         formTemplate = (
           <div className="formBlock">
-            <input
-              {...formData.config}
-              value={formData.value}
-              onBlur={(event)=> change({event, id, blur:true})}
-              onChange={(event)=> change({event, id})}
-            />
-            {showError()}
+            {formData.showlabel ?
+              <div className="label_inputs">{formData.config.label}</div>
+              :null}
+
+              <input
+                {...formData.config}
+                value={formData.value}
+                onBlur={(event) => change({event, id, blur: true})}
+                onChange={(event) => change({event, id})}
+              />
+              {showError()}
           </div>
         )
-      break;
-      default:
-        formTemplate = null;
-    }
-    return formTemplate;
-  }
+        break;
+        case('select'):
+          formTemplate = (
+            <div className="formBlock">
+              {formData.showlabel ?
+                <div className="label_inputs">{formData.config.label}</div>
+                :null}
 
-  return (
-    <div>
-        {renderTemplate()}
-    </div>
-  );
-};
+                <select
+                  value={formData.value}
+                  onBlur={(event) => change({event, id, blur: true})}
+                  onChange={(event) => change({event, id})}
+                >
+                  <option value="">Select One</option>
+                  {
+                    formData.config.options.map(item => (
+                      <option
+                        key={item.key}
+                        value={item.key}
+                      >
+                        {item.value}
+                      </option>
+                    ))
+                  }
+                </select>
+                {showError()}
+            </div>
+          )
+          break;
+          case('textarea'):
+          formTemplate = (
+            <div className="formBlock">
+              {formData.showlabel ?
+                <div className="label_inputs">{formData.config.label}</div>
+              :null}
+              <textarea
+                {...formData.config}
+                value={formData.value}
+                onBlur={(event) => change({event, id, blur: true})}
+                onChange={(event) => change({event, id})}
+              />
+              {showError()}
+            </div>
+          )
+          break;
+          default:
+            formTemplate = null;
+          }
+          return formTemplate;
+        }
+
+        return (
+          <div>
+            {renderTemplate()}
+          </div>
+        );
+      };
 
 export default Formfield;

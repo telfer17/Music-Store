@@ -116,7 +116,7 @@ submitForm = (event) => {
           });
           setTimeout(()=>{
             this.props.history.push('/register_login');
-          }, 5000)
+          }, 3000)
         } else {
           this.setState({formError: true})
         }
@@ -136,7 +136,7 @@ submitForm = (event) => {
         <div className="container">
           <div className="register_login_container">
             <div className="left">
-              <form onSubmit={(event)=> this.submitForm(event)}>
+              <form onSubmit={(event) => this.submitForm(event)}>
               <h2>Personal Information</h2>
                 <div className="form_block_two">
                   <div className="block">
@@ -182,7 +182,7 @@ submitForm = (event) => {
                 <div>
                   { this.state.formError ?
                     <div className="error_label">
-                      Please check your data
+                      Please check your details
                     </div>
                   :null}
                   <button onClick={(event) => this.submitForm(event)}>
